@@ -31,6 +31,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 import ai.picovoice.porcupine.Porcupine;
 import ai.picovoice.porcupine.PorcupineException;
 import ai.picovoice.porcupine.PorcupineManager;
@@ -38,6 +45,7 @@ import ai.picovoice.porcupine.PorcupineManagerCallback;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private PorcupineManager porcupineManager = null;
 
     private MediaPlayer notificationPlayer;
@@ -125,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppCenter.start(getApplication(), "44c23fcb-a061-4c35-acec-1a59a7771118",
+                Analytics.class, Crashes.class);
+
         setContentView(R.layout.activity_main);
 
         notificationPlayer = MediaPlayer.create(this, R.raw.notification);
